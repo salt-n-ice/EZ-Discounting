@@ -1,0 +1,131 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.transaction-list-item {
+  background-color: #C5D1D9;
+  
+}
+
+.address-block {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.list-group {
+  margin-bottom: 20px;
+}
+// .list-group-item {
+//   background-color: #1b289c !important;
+//   border: none !important;
+
+//   margin-bottom: 2px;
+//   color: #fff;
+// }
+.list-group-item {
+  background-color: white !important;
+  border-top: 1px solid #0091b5;
+  border-left-color: #fff;
+  border-right-color: #fff;
+  margin-bottom: 2px; 
+}
+
+.list-group-item:hover {
+  background-color: rgb(226, 216, 216) !important;
+  cursor: pointer;
+}
+
+.list-table-header {
+  background: #95DBE5FF !important;  
+  // color: #f1f9fb;
+}
+.list-table-header:hover{
+  background-color: rgb(92, 214, 233) !important;
+}
+
+button {
+  background-color:rgb(104, 187, 144) !important;
+  border: none !important;
+}
+
+.manager-invoice-list {
+  margin-top: 20px;
+}
+
+.manager-invoice-btn {
+  width: 100%;
+  font-size: 14px !important;
+  padding-left: 6px !important;
+}
+
+.nav-item nav-link active {
+  background: #95DBE5FF;
+  color: #f5f5f5;
+  border: none !important;
+}
+
+.cell-label {
+    font-weight: 600;
+  font-size: 11px;
+}
+.cell-data {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.secondary-btn {
+  background: #8AD6FF !important;
+  color: #0D1440 !important;
+}
+
+.empty-list-container {
+      background: #95DBE5FF;
+    margin-top: 30px;
+    // color: #f5f5f5;
+    padding: 20px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.empty-user-list {
+  margin-top: 10px;
+}
+
+.close {
+  background: #fff !important;
+}
