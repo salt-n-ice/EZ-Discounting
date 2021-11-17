@@ -20,14 +20,15 @@ export default class CreateInvoice extends Component {
     let actionButtonReceived, actionButtonPaid;
     const { dialogVisible, handleCloseDialog, data, dataItem} = this.props;
     if(this.props.toggle=='unpaid'){
-        if (data.status === 'paid') {
-          actionButtonPaid = 
-          <a href={`${ETHQ_ENDPOINT}/tx/${data.transaction_hash}`} target="_blank">
-          <Button className="btn btn-secondary">Reciept of Money sent</Button>
-          </a>
-        } else {
           actionButtonPaid = <Button className="btn btn-secondary" onClick={() => this.payInvoice(data)}>Pay</Button>
-        }
+    }
+    else{
+      if (data.status === 'paid') {
+        actionButtonPaid = 
+        <a href={`${ETHQ_ENDPOINT}/tx/${data.transaction_hash}`} target="_blank">
+        <Button className="btn btn-secondary">Reciept of Money sent</Button>
+        </a>
+      }
     }
     if(data.status2=='paid'){
       actionButtonReceived = 

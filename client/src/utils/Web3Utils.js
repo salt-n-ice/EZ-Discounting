@@ -1,4 +1,5 @@
 const Web3 = require('web3');
+// contractData =require('Invoices.json');
 
 module.exports = {
   getEthBalance: function() {
@@ -39,5 +40,12 @@ module.exports = {
       })
     });
   },
+  // checkForInvoice: function(from, invoiceNumber, contractAbi, contractAddress) {
+  //   const web3 = window.web3;
+  //   console.log(contractAbi);
+  //   // return new Promise((resolve, reject) => {
+  //   //   web3.eth
+  //   // })
+  // }
 
 }

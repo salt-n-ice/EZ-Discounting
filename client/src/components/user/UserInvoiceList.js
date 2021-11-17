@@ -27,7 +27,6 @@ export default class UserInvoiceList extends Component {
     const { dialogVisible, data, dataItem} = this.state;
     const { previousInvoices , toggle} = this.props;
     let invoices = previousInvoices.map((item, idx) => {
-      console.log(toggle, item.status, item.status2);
       if(toggle=='unpaid'){
         if(item.status=='paid') return;
       }

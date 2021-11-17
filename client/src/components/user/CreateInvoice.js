@@ -3,6 +3,8 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './user.scss';
+import InvoiceContract from './Invoices.json'
+const Web3 = require('web3');
 var util = require('web3-utils');
 // const [selectedInvoiceDate, setselectedInvoiceDate] = useState(null);
 export default class CreateInvoice extends Component {
@@ -10,9 +12,13 @@ export default class CreateInvoice extends Component {
     super(props);
     this.state = { address: '', pay: 0, type: '', hours: 0, perHour: true, perProject: false, label: '', description: '', selectedInvoiceDate: '', selectedFinanceDate: '', invoiceNumber: '', customerName: '', amount: 0, items: [], storeItem: '', success: 'init', discount: 15};
   }
-  submitInvoice = () => {
+  submitInvoice = async () => {
     const { address, pay, type, hours, label, description, perHour,selectedInvoiceDate, selectedFinanceDate, invoiceNumber, customerName, amount, items, storeItem, discount} = this.state;
-
+    let ok = await this.checkInvoice();
+    console.log(ok);
+    if(ok){
+    await this.addInvoice();
+    }
     const sender_address = window.ethereum.selectedAddress;
     console.log("Sender address is : " + sender_address);
 
@@ -33,6 +39,30 @@ export default class CreateInvoice extends Component {
     this.props.submitInvoice(payload);
     // this.props.handleCloseDialog();
   }
+
+  checkInvoice = async () => {
+    const {invoiceNumber}  = this.state;
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    const currAddress = window.ethereum.selectedAddress;
+    let abi = InvoiceContract.abi;
+    let contractAddress = InvoiceContract.networks[5777].address;
+    var myContract = new web3.eth.Contract(abi, contractAddress);
+    let ok = await myContract.methods.checkInvoice(currAddress, invoiceNumber).call();
+    return ok;
+  }
+
+  addInvoice = async () => {
+    const {address, invoiceNumber} = this.state;
+    const currAddress = window.ethereum.selectedAddress;
+    let abi = InvoiceContract.abi;
+    let contractAddress = InvoiceContract.networks[5777].address;
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    var myContract = new web3.eth.Contract(abi, contractAddress);
+    await myContract.methods.addInvoice(currAddress, address,  invoiceNumber).send({from: currAddress , gas:3000000});
+  }
+
+
+
 
   addItem = () => {
     const {items, itemName, itemQuantity, itemPrice, amount} = this.state;

@@ -4,7 +4,6 @@ import CreateInvoice from './CreateInvoice';
 import { isNonEmptyArray } from '../../utils/ObjectUtils';
 import { checkIfPaymentStatusUpdate } from '../../utils/ObjectUtils';
 import UserInvoiceList from './UserInvoiceList';
-import TransactionStatus from '../transaction/TransactionStatus';
 import './user.scss';
 
 export default class UserView extends Component {
@@ -59,13 +58,6 @@ export default class UserView extends Component {
   render() {
     const { dialogVisible, pendingTransactions} = this.state;
     const { user } = this.props;
-    let pendingTransactionList = <span/>;
-    if (isNonEmptyArray(pendingTransactions)) {
-      pendingTransactionList =
-        pendingTransactions.map(function(item, idx) {
-          return <TransactionStatus key={`${item}+${idx}`} transaction_hash={item}/>;
-        });
-    }
 
     let invoiceList = <span/>;
     if (user.previousInvoices.length > 0) {
@@ -76,8 +68,6 @@ export default class UserView extends Component {
     }
     return (
       <Container>
-      
-      {pendingTransactionList}
       <CreateInvoice dialogVisible={dialogVisible} handleCloseDialog={this.handleCloseDialog} submitInvoice={this.props.submitInvoice} success={user.success} initializeSuccess={this.props.initializeSuccess}/>
       <Row className="add-invoice-btn-row">
         <Col lg={3}>
@@ -110,7 +100,6 @@ export default class UserView extends Component {
                   </Row>
                 </ListGroupItem>
                 
-                {/* {transactionList} */}
               </ListGroup>
             </Tab>
         </Tabs>  

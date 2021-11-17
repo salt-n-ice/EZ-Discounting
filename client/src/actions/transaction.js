@@ -1,5 +1,4 @@
-import { makePaymentTransaction } from '../utils/Web3Utils';
-import { getTransactionStatus } from '../utils/DfuseUtils';
+import { makePaymentTransaction, getTransactionStatus } from '../utils/Web3Utils';
 import axios from 'axios';
 
 export const GET_USER_PAYINS = 'GET_USER_PAYINS';
@@ -11,6 +10,8 @@ export const GET_USER_PAYOUTS = 'GET_USER_PAYOUTS';
 export const PAY_INVOICE = 'PAY_INVOICE';
 export const PAY_INVOICE_SUCCESS = 'PAY_INVOICE_SUCCESS';
 export const PAY_INVOICE_FAILURE = 'PAY_INVOICE_FAILURE';
+
+export const CHECK_INVOICE = 'CHECK_INVOICE';
 
 export const GET_PENDING_TRANSACTION_STATUS = 'GET_PENDING_TRANSACTION_STATUS';
 export const GET_PENDING_TRANSACTION_STATUS_SUCCESS = 'GET_PENDING_TRANSACTION_STATUS_SUCCESS';
@@ -30,6 +31,15 @@ export function payInvoice(transaction ,amount) {
     payload: request
   }
 }
+
+// export function checkInvoice(from, invoiceNumber, contractAbi, contractAddress){
+//   const request = checkForInvoice(from, invoiceNumber, contractAbi, contractAddress);
+//   console.log(request);
+//   return {
+//     type: CHECK_INVOICE,
+//     payload: request
+//   }
+// }
 
 export function payInvoiceSuccess(response) {
   return {
